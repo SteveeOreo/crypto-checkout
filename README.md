@@ -1,3 +1,32 @@
+# Crypto Checkout (React + TypeScript + Vite)
+
+Simple crypto checkout demo built from a Figma reference. Two screens are implemented:
+
+- Checkout: review payment details, enter email and wallet, submit mock payment
+- Success: confirmation screen with a mock transaction ID
+
+## Setup
+
+```bash
+npm install
+npm run dev
+```
+
+The app starts at `http://localhost:5173` (or the next available port).
+
+## How It Works
+
+- The `Checkout` page performs basic validation on email and wallet fields.
+- Clicking `Pay securely` triggers a mock processing state and then navigates to `Success`.
+- Navigation is handled via simple view state in `App.tsx`.
+
+## Assumptions & Trade-offs
+
+- No backend integration; all data is mocked.
+- Basic validation (email format check and non-empty wallet) to keep scope tight.
+- TailwindCSS used for styling; accessibility basics included (labels, button states).
+
+---
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
