@@ -1,103 +1,200 @@
-# Crypto Checkout (React + TypeScript + Vite)
+# Crypto Checkout
 
-Simple crypto checkout demo built from a Figma reference. Two screens are implemented:
+A modern, responsive cryptocurrency checkout application built with React, TypeScript, and Vite. This project implements a clean, user-friendly interface for processing cryptocurrency transactions, featuring two main screens: a checkout page for sending cryptocurrency and a success page for transaction confirmation.
 
-- Checkout: review payment details, enter email and wallet, submit mock payment
-- Success: confirmation screen with a mock transaction ID
+## 🚀 Features
 
-## Setup
+- **Checkout Page**: 
+  - Display recipient cryptocurrency address in a styled pill component
+  - Transaction details summary (amount, network, wallet)
+  - Copy-to-clipboard functionality for address and amount
+  - Warning message with network information
+  - Responsive design for mobile and desktop
 
+- **Success Page**:
+  - Transaction processing confirmation
+  - Transaction ID display with copy functionality
+  - Clean, centered layout with brand logo
+  - Navigation back to checkout
+
+- **Design & UX**:
+  - Modern UI matching Figma design specifications
+  - Fully responsive (mobile-first approach)
+  - Smooth transitions and hover effects
+  - Accessible components with proper ARIA labels
+  - Custom icon components (Info, Copy, Arrow Left, Check)
+
+## 🛠️ Tech Stack
+
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **TailwindCSS** - Utility-first CSS framework
+- **PostCSS** - CSS processing
+- **ESLint** - Code linting
+
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── Button.tsx          # Reusable button component
+│   ├── CheckoutCard.tsx    # Main card container component
+│   └── icons.tsx           # Custom SVG icon components
+├── pages/
+│   ├── Checkout.tsx        # Checkout/send cryptocurrency page
+│   └── Success.tsx        # Transaction success/processing page
+├── images/
+│   ├── Checkout.png        # Success indicator icon
+│   └── Novacrust.png       # Brand logo
+├── App.tsx                 # Main app component with routing logic
+├── main.tsx               # Application entry point
+└── index.css              # Global styles
+```
+
+## 🚦 Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd crypto-checkout
+```
+
+2. Install dependencies:
 ```bash
 npm install
+```
+
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-The app starts at `http://localhost:5173` (or the next available port).
+The application will be available at `http://localhost:5173` (or the next available port).
 
-## How It Works
+### Build for Production
 
-- The `Checkout` page performs basic validation on email and wallet fields.
-- Clicking `Pay securely` triggers a mock processing state and then navigates to `Success`.
-- Navigation is handled via simple view state in `App.tsx`.
+```bash
+npm run build
+```
 
-## Assumptions & Trade-offs
+The production build will be in the `dist` directory.
 
-- No backend integration; all data is mocked.
-- Basic validation (email format check and non-empty wallet) to keep scope tight.
-- TailwindCSS used for styling; accessibility basics included (labels, button states).
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+## 📖 Usage
+
+### Checkout Flow
+
+1. **Checkout Page**: 
+   - Review the recipient address displayed in the green pill
+   - Check transaction details (amount, network, wallet)
+   - Read the warning message about network requirements
+   - Click "I have sent it" to confirm the transaction
+
+2. **Success Page**:
+   - View transaction processing confirmation
+   - Copy the transaction ID if needed
+   - Click "Go back to home" to return to checkout
+
+### Components
+
+#### CheckoutCard
+The main container component that provides consistent styling and layout for both pages.
+
+**Props:**
+- `title?: string` - Optional title
+- `subtitle?: string` - Optional subtitle
+- `children: ReactNode` - Page content
+
+#### Button
+Reusable button component with loading and disabled states.
+
+**Props:**
+- `text: string` - Button label
+- `loading?: boolean` - Loading state
+- `disabled?: boolean` - Disabled state
+- `onClick?: () => void` - Click handler
+- `type?: "button" | "submit"` - Button type
+- `className?: string` - Additional CSS classes
+
+#### Icons
+Custom SVG icon components:
+- `ArrowLeftIcon` - Back navigation
+- `CopyIcon` - Copy to clipboard
+- `InfoIcon` - Information indicator
+- `CheckIcon` - Success/checkmark
+
+## 🎨 Design Details
+
+### Color Palette
+- **Primary Teal**: `#013941` - Main brand color
+- **Light Green**: `#CCF6E5` - Borders and accents
+- **Background Green**: `#E6FBF2` - Address pill background
+- **Success Green**: `#10B981` - Success indicators
+- **Dark Background**: `#000000` - Page background
+- **Card Background**: `#FFFFFF` - Card background
+- **Light Gray**: `#F7F7F7` - Summary card background
+- **Text Colors**: Various shades of slate/gray for text hierarchy
+
+### Typography
+- **Font Family**: Outfit (primary), Instrument Sans (buttons)
+- **Responsive Sizing**: Mobile-first approach with `md:` breakpoints
+- **Font Weights**: Regular (400), Medium (500), Semibold (600)
+
+### Spacing & Layout
+- Consistent padding and margins throughout
+- Responsive breakpoints: `md:` (768px+), `lg:` (1024px+)
+- Card max-width: 640px
+- Rounded corners: 20px (mobile) to 30px (desktop)
+
+## 🔧 Development
+
+### Code Style
+- TypeScript strict mode enabled
+- ESLint for code quality
+- React hooks best practices
+- Component-based architecture
+
+### Key Features Implementation
+
+- **Copy to Clipboard**: Uses the Clipboard API with fallback handling
+- **State Management**: Simple React state for page navigation
+- **Responsive Design**: TailwindCSS utility classes with mobile-first approach
+- **Accessibility**: ARIA labels, semantic HTML, keyboard navigation support
+
+## 📝 Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## 🎯 Future Enhancements
+
+Potential improvements:
+- Backend integration for real transactions
+- Wallet connection (MetaMask, WalletConnect)
+- Multiple cryptocurrency support
+- Transaction history
+- Real-time transaction status updates
+- Multi-language support
+
+## 📄 License
+
+This project is private and proprietary.
 
 ---
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-# crypto-checkout
+Built with ❤️ using React, TypeScript, and TailwindCSS
